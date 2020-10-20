@@ -1,12 +1,6 @@
 <template>
    <v-app>
-    <v-app-bar app>
-      <!-- アプリケーションバー -->
-    </v-app-bar>
-
-    <!-- <v-navigation-drawer app> -->
-      <!-- ドロワー -->
-    <!-- </v-navigation-drawer> -->
+    <app-header></app-header>
 
     <v-main>
       <router-view></router-view>
@@ -19,12 +13,27 @@
 </template>
 
 <script>
+import constants from './common/constants'
+import Header from './components/Header.vue'
 
 export default {
   name: 'App',
-
-  data: () => ({
-    //
-  }),
+  components: {
+    appHeader: Header,
+  },
+  data() {
+    return {
+      drawer: false,
+      menuItems: constants.menuItems,
+    }
+  }
+  
 };
 </script>
+
+<style lang="scss" scoped>
+.v-toolbar__title {
+  overflow: visible !important;
+  margin-right: 50px !important;
+}
+</style>
