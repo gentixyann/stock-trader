@@ -2,7 +2,7 @@
  <v-container>
      <v-row>
          <v-col v-for="stock in stocks" :key="stock.id">
-              <app-stock></app-stock>
+            <app-stock :stock="stock"></app-stock>
          </v-col>
      </v-row>
  </v-container>
