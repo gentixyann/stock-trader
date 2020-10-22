@@ -26,8 +26,10 @@ export default {
       drawer: false,
       menuItems: constants.menuItems,
     }
+  },
+  created() {
+    this.$store.dispatch('initStocks');
   }
-  
 };
 </script>
 
