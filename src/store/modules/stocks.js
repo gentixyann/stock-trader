@@ -14,9 +14,11 @@ const mutations = {
 };
 
 const actions = {
-    buyStock: ({ commit }) => {
-        commit();
+    // stocks/Stock.vueのdispatchで使われてる
+    buyStock: ({ commit }, order) => {
+        commit('BUY_STOCK', order);
     },
+    // App.vueのdispatchで使われてる
     initStocks: ({ commit }) => {
         commit('SET_STOCKS', stocks);
     },
@@ -31,6 +33,7 @@ const getters = {
     }
 };
 
+// store.jsのnew Vuex.Storeで使われる
 export default {
     state,
     mutations,
