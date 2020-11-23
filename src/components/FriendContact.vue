@@ -25,6 +25,7 @@ export default {
     'emailAddress',
     'isFavorite',
   ],
+  emits: ['toggle-favorite'],
   data() {
     return {
       detailsAreVisible: false,
