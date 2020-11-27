@@ -13,6 +13,7 @@
         {{ emailAddress }}
       </li>
     </ul>
+    <button @click="$emit('delete', id)">Delete</button>
   </li>
 </template>
 
@@ -25,7 +26,8 @@ export default {
     'emailAddress',
     'isFavorite',
   ],
-  emits: ['toggle-favorite'],
+  // emitsの内容が親であるApp.vueで使われる
+  emits: ['toggle-favorite', 'delete'],
   data() {
     return {
       detailsAreVisible: false,
@@ -37,7 +39,7 @@ export default {
     },
     toggleFavorite() {
       this.$emit('toggle-favorite', this.id);
-    }
+    },
   }
 };
 </script>
