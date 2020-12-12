@@ -1,7 +1,6 @@
 import { createApp } from 'vue';
 import { createStore } from 'vuex';
 
-
 import App from './App.vue';
 
 const counterModule = {
@@ -29,6 +28,9 @@ const counterModule = {
         },
     },
     getters: {
+        testAuth(state, getters, rootState, rootGetters) { 
+            return state.isLoggedIn;
+        },
         finalCounter(state) {
             return state.counter * 2;
         },
