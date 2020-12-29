@@ -2,7 +2,7 @@ export default {
     // ここのdataはCoachForm.vueで送信されるformDataのこと
     registerCoach(context, data) {
         const coachData = {
-            id: 'c3',
+            id: context.rootGetters.userId,
             firstName: data.first,
             lastName: data.last,
             areas: data.areas,
