@@ -5,6 +5,7 @@ export default {
     hasCoaches(state) {
         return state.coaches && state.coaches.length > 0;
     },
+    // rootGettersは一番階層が上のindex.jsのgetters
     isCoach(state, getters, rootState, rootGetters) {
         const coaches = getters.coaches;
         const userId = rootGetters.userId;

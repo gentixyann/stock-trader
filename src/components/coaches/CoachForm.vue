@@ -2,32 +2,32 @@
     <form @submit.prevent="submitForm">
         <div class="form-control">
             <label for="firstName">First Name</label>
-            <input type="text" id="firstName" v-model.trim="firstName">
+            <input type="text" id="firstName" v-model.trim="firstName.val">
         </div>
         <div class="form-control">
             <label for="lastName">Last Name</label>
-            <input type="text" id="lastName" v-model.trim="lastName">
+            <input type="text" id="lastName" v-model.trim="lastName.val">
         </div>
         <div class="form-control">
             <label for="description">Description</label>
-            <textarea type="text" id="description" rows="5" v-model.trim="description"></textarea>
+            <textarea type="text" id="description" rows="5" v-model.trim="description.val"></textarea>
         </div>
         <div class="form-control">
             <label for="rate">Hourly Rate</label>
-            <input type="number" id="rate" v-model.trim="rate">
+            <input type="number" id="rate" v-model.trim="rate.val">
         </div>
         <div class="form-control">
             <h3>Areas of Experties</h3>
             <div>
-                <input type="checkbox" id="frontend" value="frontend" v-model="areas">
+                <input type="checkbox" id="frontend" value="frontend" v-model="areas.val">
                 <label for="frontend">Frontend Developer</label>
             </div>
             <div>
-                <input type="checkbox" id="backend" value="backend" v-model="areas">
+                <input type="checkbox" id="backend" value="backend" v-model="areas.val">
                 <label for="backend">Backend Developer</label>
             </div>
             <div>
-                <input type="checkbox" id="career" value="career" v-model="areas">
+                <input type="checkbox" id="career" value="career" v-model="areas.val">
                 <label for="career">Career Developer</label>
             </div>
         </div>
@@ -40,14 +40,32 @@ export default {
   emits: ['save-data'],
     data() {
         return {
-            firstName: '',
-            lastName: '',
-            areas: [],
-            description: '',
-            rate: null
+            firstName: {
+              val: '',
+              isValid: true
+            },
+            lastName: {
+              val: '',
+              isValid: true
+            },
+            areas: {
+              val: [],
+              isValid: true
+            },
+            description: {
+              val: '',
+              isValid: true
+            },
+            rate: {
+              val: null,
+              isValid: true
+            }
         }
     },
     methods: {
+      validationForm() {
+
+      },
         submitForm() {
             const formData = {
                 first: this.firstName,
