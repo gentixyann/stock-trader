@@ -1,22 +1,26 @@
 <template>
     <form @submit.prevent="submitForm">
-        <div class="form-control">
+        <div class="form-control" :class="{invalid: !firstName.isValid}">
             <label for="firstName">First Name</label>
             <input type="text" id="firstName" v-model.trim="firstName.val">
+            <p v-if="!firstName.isValid">firstName must not be empty.</p>
         </div>
-        <div class="form-control">
+        <div class="form-control" :class="{invalid: !lastName.isValid}">
             <label for="lastName">Last Name</label>
             <input type="text" id="lastName" v-model.trim="lastName.val">
+             <p v-if="!lastName.isValid">lastName must not be empty.</p>
         </div>
-        <div class="form-control">
+        <div class="form-control" :class="{invalid: !description.isValid}">
             <label for="description">Description</label>
             <textarea type="text" id="description" rows="5" v-model.trim="description.val"></textarea>
+             <p v-if="!description.isValid">description must not be empty.</p>
         </div>
-        <div class="form-control">
+        <div class="form-control" :class="{invalid: !rate.isValid}">
             <label for="rate">Hourly Rate</label>
             <input type="number" id="rate" v-model.trim="rate.val">
+             <p v-if="!rate.isValid">rate must be greater than 0.</p>
         </div>
-        <div class="form-control">
+        <div class="form-control" :class="{invalid: !areas.isValid}">
             <h3>Areas of Experties</h3>
             <div>
                 <input type="checkbox" id="frontend" value="frontend" v-model="areas.val">
@@ -30,7 +34,9 @@
                 <input type="checkbox" id="career" value="career" v-model="areas.val">
                 <label for="career">Career Developer</label>
             </div>
+             <p v-if="!areas.isValid">At least one expertise must be selected.</p>
         </div>
+        <p v-if="!formIsValid">Please fix the above errors and submit again.</p>
         <base-button>Register</base-button>
     </form>
 </template>
@@ -59,14 +65,41 @@ export default {
             rate: {
               val: null,
               isValid: true
-            }
+            },
+            formIsValid: true
         }
     },
     methods: {
       validationForm() {
-
+        this.formIsValid = true;
+        if (this.firstName.val === '') {
+          this.firstName.isValid = false;
+          this.formIsValid = false;
+        }
+        if (this.lastName.val === '') {
+          this.lastName.isValid = false;
+          this.formIsValid = false;
+        }
+        if (this.description.val === '') {
+          this.description.isValid = false;
+          this.formIsValid = false;
+        }
+        if (!this.rate.val || this.rate.val < 0) {
+          this.rate.isValid = false;
+          this.formIsValid = false;
+        }
+        if (this.areas.val.length === 0) {
+          this.areas.isValid = false;
+          this.formIsValid = false;
+        }
       },
         submitForm() {
+          this.validationForm();
+
+          if (!this.formIsValid) {
+            return;
+          }
+
             const formData = {
                 first: this.firstName,
                 last: this.lastName,
